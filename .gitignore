@@ -1,0 +1,20 @@
+# Ignore Python bytecode
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
+
+# Ignore virtual environment folders
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Ignore VSCode settings (optional)
+.vscode/
+
+# Ignore macOS system files (optional)
+.DS_Store
+
+# Ignore IDE folders (optional)
+.idea/
