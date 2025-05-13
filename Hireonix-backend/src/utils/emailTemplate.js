@@ -43,3 +43,20 @@ exports.interviewScheduleTemplate = (
   </div>
 `;
 
+exports.sendOtpTemplate = ( otp, expiryTimeInMinutes) => `
+  <div style="font-family: Arial, sans-serif; padding: 16px; color: #333;">
+    <h2 style="color: #2c3e50;">Hi </h2>
+    <p>Your one-time password (OTP) for verification is:</p>
+    <h1 style="color: #e74c3c; font-size: 32px; margin: 16px 0;">${otp}</h1>
+    <p>This OTP is valid for the next <strong>${expiryTimeInMinutes} minutes</strong>.</p>
+    <p style="color: #555;">Please do not share this code with anyone.</p>
+    <br/>
+    <p>If you did not request this code, you can safely ignore this email.</p>
+    <br/>
+    <p style="margin: 0;">Best regards,</p>
+    <p style="margin: 0;">Security Team</p>
+    <p style="margin: 0;">SRS-IMS</p>
+  </div>
+`;
+
+

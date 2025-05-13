@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const models = require("../models/index");
 const dotenv = require("dotenv");
 const ApiError = require("../utils/ApiError");
+
 dotenv.config();
 
 exports.registerUser = async ({ name, email, password, role }) => {
@@ -13,14 +14,20 @@ exports.registerUser = async ({ name, email, password, role }) => {
 
   const passwordHash = await bcrypt.hash(password, 10);
 
-  const newUser = new models.User({ name, email, passwordHash, role });
-  if (role === "recruiter") {
-    newUser.isApproved = false;
-  }
-  await newUser.save();
+  const newUser = new models.User({
+    name,
+    email,
+    password: passwordHash,
+    role,
+  });
 
+  await newUser.save();
   return {
     message: "User registered successfully",
+    user: {
+      userId: newUser._id,
+      email: newUser.email,
+    },
   };
 };
 
@@ -30,9 +37,6 @@ exports.loginUser = async ({ email, password }) => {
 
   const isMatch = await bcrypt.compare(password, user.passwordHash);
   if (!isMatch) throw new ApiError("Invalid credentials", 401);
-  // if (user.role === "recruiter" && !user.isApproved) {
-  //   throw new ApiError("Your recruiter account is pending approval", 403);
-  // }
 
   const token = jwt.sign(
     { id: user._id, role: user.role },

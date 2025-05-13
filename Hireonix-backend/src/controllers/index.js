@@ -1,5 +1,6 @@
 module.exports = {
   authController: require("./auth.controller"),
   jobApplicationController: require("./jobApplication.controller"),
-  jobController:require("./job.controller")
+  jobController: require("./job.controller"),
+  otpController: require("./otp.controller"),
 };

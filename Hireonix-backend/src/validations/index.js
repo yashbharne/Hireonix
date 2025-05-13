@@ -5,5 +5,6 @@ module.exports = {
   resume: require("./resume.validations"),
   jobValidateSchema: require("./job.validations"),
   application: require("./application.validations"),
-  interview: require("./interview.validations")
+  interview: require("./interview.validations"),
+  otpValidateSchema: require("./otp.validations"),
 };
