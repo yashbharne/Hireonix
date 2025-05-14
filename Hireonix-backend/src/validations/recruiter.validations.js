@@ -1,5 +1,5 @@
-import Joi from "joi";
-import mongoose from "mongoose";
+const Joi = require("joi");
+const mongoose = require("mongoose");
 
 // Custom validation for ObjectId
 const objectId = Joi.string().custom((value, helpers) => {
@@ -9,9 +9,7 @@ const objectId = Joi.string().custom((value, helpers) => {
   return value;
 }, "ObjectId Validation");
 
-export const recruiterValidationSchema = Joi.object({
-  userId: objectId.required(),
-
+exports.recruiterValidationSchema = Joi.object({
   companyName: Joi.string().trim().required(),
   companyWebsite: Joi.string().uri().trim().required(),
   companyLogo: Joi.string().uri().optional(),
@@ -22,20 +20,12 @@ export const recruiterValidationSchema = Joi.object({
     .valid("Startup", "SME", "Enterprise", "Agency", "Other")
     .required(),
   companyDescription: Joi.string().max(1000).required(),
-  companyEstablished: Joi.date()
-    .less("now") 
-    .required()
-    .messages({
-      "date.less":
-        "Company establishment date cannot be today or in the future",
-      "any.required": "Company establishment date is required",
-    }),
-
+  companyEstablished: Joi.date().required(),
   designation: Joi.string().required(),
   contactNumber: Joi.string()
-    .pattern(/^(?:\+?\d{1,3}[- ]?)?\d{10}$/)
-    .message("Invalid contact number format")
-    .optional(),
-  linkedInProfile: Joi.string().uri().optional().trim(),
+    .pattern(/^[0-9+\-() ]{7,20}$/)
+    .required(),
+
+  linkedInProfile: Joi.string().uri().trim().optional(),
   address: Joi.string().required(),
 });

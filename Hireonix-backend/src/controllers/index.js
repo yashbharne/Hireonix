@@ -3,4 +3,5 @@ module.exports = {
   jobApplicationController: require("./jobApplication.controller"),
   jobController: require("./job.controller"),
   otpController: require("./otp.controller"),
+  recruiterController: require("./recruiter.controller"),
 };

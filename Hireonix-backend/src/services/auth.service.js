@@ -32,10 +32,16 @@ exports.registerUser = async ({ name, email, password, role }) => {
 };
 
 exports.loginUser = async ({ email, password }) => {
+  console.log("In service");
+
+  console.log("In Service: ",email, password);
+
   const user = await models.User.findOne({ email });
   if (!user) throw new ApiError("Invalid credentials", 401);
+  console.log("user: ",user);
+  
 
-  const isMatch = await bcrypt.compare(password, user.passwordHash);
+  const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) throw new ApiError("Invalid credentials", 401);
 
   const token = jwt.sign(

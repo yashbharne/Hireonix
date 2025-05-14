@@ -1,28 +1,28 @@
 const mongoose = require("mongoose");
 
-const InterviewerSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  empId: { type: String, required: true },
-  position: { type: String },
-  domain: { type: String },
-  feedback: { type: String },
-  tempAccess: {
-    username: { type: String },
-    hashedPassword: { type: String },
-  },
-});
-
 const InterviewRoundSchema = new mongoose.Schema({
-  roundNumber: { type: Number },
-  interviewers: [InterviewerSchema],
+  roundNumber: { type: Number, required: true },
+  interviewers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Interviewer",
+    },
+  ],
   mode: {
     type: String,
     enum: ["Online", "Offline"],
     required: true,
   },
-  interviewLink: { type: String },
-  date: { type: Date },
-  time: { type: String },
+  interviewLink: { type: String }, // For online interviews
+  date: { type: Date, required: true },
+  startTime: { type: Date, required: true },
+
+  status: {
+    type: String,
+    enum: ["Scheduled", "In Progress", "Completed", "Cancelled"],
+    default: "Scheduled",
+  },
+  feedback: { type: String },
 });
 
 const InterviewSchema = new mongoose.Schema(

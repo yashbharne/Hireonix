@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
  * @param {string} html - HTML content of the email
  */
 const sendEmail = async (to, subject, html) => {
-  console.log(to, subject, html);
+
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
@@ -24,8 +24,7 @@ const sendEmail = async (to, subject, html) => {
     subject,
     html,
   };
-  console.log();
-  
+
 
   try {
     await transporter.sendMail(mailOptions);

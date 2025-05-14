@@ -14,13 +14,11 @@ const resumeWorker = new Worker(
       }
 
       const resumeData = await extractResumeData(resumeUrl);
-      console.log(resumeData);
-      
 
       const fetchjob = await  Job.findById(jobId)
 
       const atsScore = await matchResumeWithJD(resumeData, fetchjob.description);
-      console.log("ATS Score",atsScore);
+      
       
       
 

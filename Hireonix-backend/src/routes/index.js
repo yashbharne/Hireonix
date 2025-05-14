@@ -4,12 +4,14 @@ const authRoutes = require("./auth.routes");
 const candidateRoutes = require("./jobApplication.routes");
 const jobRoutes = require("./job.routes");
 const otpRoutes = require("./otp.routes");
+const recruiterRoutes = require("./recruiter.routes");
 // Array of route objects
 const routes = [
   { path: "/api/auth", handler: authRoutes },
   { path: "/api/application", handler: candidateRoutes },
   { path: "/api/recruiter", handler: jobRoutes },
   { path: "/api/otp", handler: otpRoutes },
+  { path: "/api/recruiter", handler: recruiterRoutes },
 ];
 
 // Dynamically use each route

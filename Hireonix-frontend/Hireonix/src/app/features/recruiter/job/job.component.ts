@@ -24,7 +24,7 @@ export class JobComponent {
     this.jobService.getAllJobsOfRecruiter().subscribe({
       next: (res: any) => {
         console.log(res);
-        this.jobs = res.jobs;
+        this.jobs = res.jobs.results;
       },
       error: (error: any) => {
         console.log(error);

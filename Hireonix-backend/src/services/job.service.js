@@ -1,4 +1,4 @@
-const { Job, JobApplication } = require("../models/index");
+const { Job, JobApplication, Recruiter } = require("../models/index");
 const ApiError = require("../utils/ApiError");
 const sanitizeHtml = require("sanitize-html");
 
@@ -13,6 +13,8 @@ exports.createJob = async (recruiterId, jobData) => {
     skills,
     applicationDeadline,
   } = jobData;
+
+  const recruiter = await Recruiter.findById(recruiterId);
 
   const since = new Date();
   since.setDate(since.getDate() - 1);

@@ -7,4 +7,5 @@ module.exports = {
   application: require("./application.validations"),
   interview: require("./interview.validations"),
   otpValidateSchema: require("./otp.validations"),
+  recruiter: require("./recruiter.validations")
 };

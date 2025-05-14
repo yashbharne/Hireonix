@@ -6,11 +6,12 @@ const auth = require("../middlewares/auth.middleware"); // ensure user is authen
 const asyncHandler = require("../middlewares/async.middleware");
 const { validate } = require("../middlewares/validate.middleware");
 const { application } = require("../validations/index");
-
+const checkProfileCompletion = require("../middlewares/checkProfileCompletion");
 router
   .route("/upload")
   .post(
     auth("candidate"),
+    checkProfileCompletion,
     upload.single("resume"),
     asyncHandler(jobApplicationController.uploadResume)
   );

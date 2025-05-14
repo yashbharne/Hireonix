@@ -8,10 +8,12 @@ const atsQueue = new Queue("ats-scan", {
 });
 
 const addToATSQueue = async (jobData) => {
+  console.log("Job added in ATS Queue");
+
   const id = await atsQueue.add("scan-resume", jobData, {
     attempts: 3,
     backoff: 5000,
-    removeOnComplete: true, 
+    removeOnComplete: true,
     removeOnFail: false,
   });
   return id;

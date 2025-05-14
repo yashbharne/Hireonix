@@ -5,12 +5,13 @@ const auth = require("../middlewares/auth.middleware");
 const asyncHandler = require("../middlewares/async.middleware");
 const { validate } = require("../middlewares/validate.middleware");
 const { jobValidateSchema } = require("../validations");
+const checkProfileCompletion = require("../middlewares/checkProfileCompletion")
 
 router
   .route("/create")
   .post(
     validate(jobValidateSchema.createJobSchema),
-    auth("recruiter"),
+    auth("recruiter"), checkProfileCompletion,
     asyncHandler(jobController.createJob)
   );
 
