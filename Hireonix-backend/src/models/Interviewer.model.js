@@ -2,26 +2,26 @@ const mongoose = require("mongoose");
 
 const InterviewerSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
-    empId: { type: String, required: true, unique: true },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    empId: { type: String, unique: true },
     position: { type: String },
     domain: { type: String },
 
     recruiter: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", 
+      ref: "User",
       required: true,
     },
 
-    tempAccess: {
-      username: { type: String, required: true },
-      hashedPassword: { type: String, required: true },
-    },
-
-    availability: [
+    interviewSchedules: [
       {
-        date: { type: Date, required: true },
-        startTime: { type: Date, required: true }, // only start time for slot
+        candidate: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        date: { type: Date },
+        startTime: { type: Date },
       },
     ],
 
@@ -40,5 +40,9 @@ const InterviewerSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+InterviewerSchema.index({
+  "interviewSchedules.date": 1,
+  "interviewSchedules.startTime": 1,
+});
 
 module.exports = mongoose.model("Interviewer", InterviewerSchema);

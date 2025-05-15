@@ -2,12 +2,11 @@ const mongoose = require("mongoose");
 
 const InterviewRoundSchema = new mongoose.Schema({
   roundNumber: { type: Number, required: true },
-  interviewers: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Interviewer",
-    },
-  ],
+  interviewers: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Interviewer",
+  },
+
   mode: {
     type: String,
     enum: ["Online", "Offline"],
@@ -44,7 +43,7 @@ const InterviewSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["Scheduled", "Completed", "Cancelled"],
+      enum: ["Scheduled", "Completed", "Cancelled", "Re-Scheduled"],
       default: "Scheduled",
     },
     rounds: [InterviewRoundSchema],

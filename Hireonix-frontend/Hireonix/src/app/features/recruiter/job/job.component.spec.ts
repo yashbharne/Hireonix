@@ -1,8 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import {  ComponentFixture, TestBed } from '@angular/core/testing';
 import { JobComponent } from './job.component';
 
 describe('JobComponent', () => {
@@ -26,3 +23,8 @@ describe('JobComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+function async(arg0: () => void): jasmine.ImplementationCallback {
+  throw new Error('Function not implemented.');
+}
+

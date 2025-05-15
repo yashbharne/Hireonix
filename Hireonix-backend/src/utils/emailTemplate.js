@@ -43,7 +43,7 @@ exports.interviewScheduleTemplate = (
   </div>
 `;
 
-exports.sendOtpTemplate = ( otp, expiryTimeInMinutes) => `
+exports.sendOtpTemplate = (otp, expiryTimeInMinutes) => `
   <div style="font-family: Arial, sans-serif; padding: 16px; color: #333;">
     <h2 style="color: #2c3e50;">Hi </h2>
     <p>Your one-time password (OTP) for verification is:</p>
@@ -59,4 +59,27 @@ exports.sendOtpTemplate = ( otp, expiryTimeInMinutes) => `
   </div>
 `;
 
+exports.sendInterviewerCredentialsMail = (
+  username,
+  tempPassword
+) => `<div style="font-family: Arial, sans-serif; line-height: 1.6; padding: 20px;">
+        <h2>Hello</h2>
+        <p>You have been added as an interviewer to our Interview Management System.</p>
 
+        <h4>Your login credentials:</h4>
+        <ul>
+          <li><strong>Username:</strong> ${username}</li>
+          <li><strong>Temporary Password:</strong> ${tempPassword}</li>
+        </ul>
+
+        <p><strong>Important:</strong> Please log in using the above credentials, change your password, and complete your profile to start conducting interviews.</p>
+
+        <p>
+          <a href="http://localhost:5000/auth/login" style="display: inline-block; padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">Login to Your Account</a>
+        </p>
+
+        <p>If you have any questions or issues accessing your account, feel free to reach out to our support team.</p>
+
+        <p>Thanks,<br/>Interview Management System Team</p>
+      </div>
+    `;

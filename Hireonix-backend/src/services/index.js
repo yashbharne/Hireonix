@@ -5,4 +5,5 @@ module.exports = {
   interviewService: require("./interviewSchedule.service"),
   otpService: require("./otp.service"),
   recruiterService: require("./recruiter.service"),
+  interviewerService: require("./interviewer.service"),
 };

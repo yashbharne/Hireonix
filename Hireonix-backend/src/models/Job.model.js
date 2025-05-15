@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const paginatePlugin = require("../plugins/paginatePlugin")
+const paginatePlugin = require("../plugins/paginatePlugin");
 const jobSchema = new mongoose.Schema(
   {
     title: {
@@ -44,24 +44,32 @@ const jobSchema = new mongoose.Schema(
       enum: ["active", "in-active"],
       default: "active",
     },
-    // companyName: {
-    //   type: String,
-    //   required: true,
-    // },
-    // industry: {
-    //   type: String,
-    //   required: true,
-    // },
     recruiter: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
+    interviewRounds: [
+      {
+        roundNumber: Number,
+        name: String, // e.g., "Technical", "Managerial", "HR"
+        domain: String, // e.g., "technical", "manager", "hr"
+        mode: {
+          type: String,
+          enum: ["Online", "Offline"],
+          default: "Online",
+        },
+        isCompleted: {
+          type: Boolean,
+          default: false,
+        },
+      },
+    ],
   },
   {
     timestamps: true,
   }
 );
-jobSchema.plugin(paginatePlugin)
+jobSchema.plugin(paginatePlugin);
 
 module.exports = mongoose.model("Job", jobSchema);

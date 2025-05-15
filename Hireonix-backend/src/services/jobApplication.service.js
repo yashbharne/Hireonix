@@ -94,7 +94,7 @@ exports.updateApplicationStatus = async (
   const application = await JobApplication.findById(applicationId).populate(
     "jobId",
     "recruiter"
-  );;
+  );
 
   if (!application) {
     throw new ApiError("Application not found", 404);
@@ -108,6 +108,9 @@ exports.updateApplicationStatus = async (
   }
 
   application.status = status;
+  if (status === "shortlisted") {
+    application.currentRound += 1;
+  }
   await application.save();
   return application;
 };

@@ -22,16 +22,30 @@ const jobApplicationSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["pending", "shortlisted", "rejected",'withdrawn'],
+      enum: [
+        "pending",
+        "shortlisted",
+        "rejected",
+        "withdrawn",
+      ],
       default: "pending",
+    },
+    interviewStatus: {
+      type: String,
+      enum: ['reschedule', 'pendingScheduling','scheduled'],
+      default:"pendingScheduling"
+
     },
     parsedResumeData: {
       skills: [String],
-      experience: Number, // Years
+      experience: Number,
       education: String,
       summary: String,
     },
-
+    currentRound: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,
